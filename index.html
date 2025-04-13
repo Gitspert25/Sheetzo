@@ -1,5 +1,3 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,21 +7,39 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <!-- Top Bar -->
+    <div class="top-bar">
         <h1>Sheetzo</h1>
-        <nav>
-            <ul>
-                <li><button id="new-sheet-btn">New Sheet</button></li>
-                <li><button id="save-sheet-btn">Save Sheet</button></li>
-                <li><button id="load-sheet-btn">Load Sheet</button></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <div id="sheet-container">
-            <!-- Sheet content will be generated here -->
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <button class="toolbar-button" id="bold-button">Bold</button>
+            <button class="toolbar-button" id="italic-button">Italic</button>
+            <button class="toolbar-button" id="underline-button">Underline</button>
+            <select class="toolbar-select" id="font-size-select">
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="14">14</option>
+                <option value="16">16</option>
+            </select>
         </div>
-    </main>
+
+        <!-- Spreadsheet Container -->
+        <div class="spreadsheet-container">
+            <div class="spreadsheet-grid" id="spreadsheet-grid"></div>
+        </div>
+
+        <!-- Bottom Toolbar -->
+        <div class="bottom-toolbar">
+            <button class="bottom-toolbar-button" id="new-sheet-button">New Sheet</button>
+            <button class="bottom-toolbar-button" id="save-sheet-button">Save Sheet</button>
+            <button class="bottom-toolbar-button" id="load-sheet-button">Load Sheet</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
