@@ -80,19 +80,35 @@ function getChartData() {
     const cells = spreadsheetGrid.children;
     const data = [];
     const labels = [];
-    for (let i = 0; i < numCols; i++) {
+    let row = 0;
+    let col = 0;
+    for (let i = 0; i < cells.length; i++) {
         const cell = cells[i];
-        labels.push(cell.textContent);
-        data.push(parseFloat(cell.textContent));
+        if (col === 0) {
+            labels.push(cell.textContent);
+        } else {
+            if (!data[col - 1]) {
+                data[col - 1] = [];
+            }
+            data[col - 1].push(parseFloat(cell.textContent));
+        }
+        col++;
+        if (col >= numCols) {
+            col = 0;
+            row++;
+        }
     }
+    const datasets = data.map((dataset, index) => {
+        return {
+            label: `Column ${index + 1}`,
+            data: dataset,
+            borderColor: `rgb(${index * 50}, ${index * 20}, 192)`,
+            tension: 0.1
+        };
+    });
     return {
         labels: labels,
-        datasets: [{
-            label: 'Data',
-            data: data,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
-        }]
+        datasets: datasets
     };
 }
 
