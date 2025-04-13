@@ -1,39 +1,23 @@
-// script.js
+// Get the spreadsheet grid container
+const spreadsheetGrid = document.getElementById('spreadsheet-grid');
 
-// Load the data from the JSON file
-fetch('data.json')
-  .then(response => response.json())
-  .then(data => {
-    // Render the sheet data
-    renderSheet(data.sheets[0].data);
-  });
+// Define the number of rows and columns
+const numRows = 100;
+const numCols = 26;
 
-// Render the sheet data
-function renderSheet(data) {
-  const sheetContainer = document.getElementById('sheet-container');
-  sheetContainer.innerHTML = '';
-
-  data.forEach((row, rowIndex) => {
-    const rowElement = document.createElement('div');
-    rowElement.classList.add('sheet-row');
-
-    row.forEach((cell, cellIndex) => {
-      const cellElement = document.createElement('input');
-      cellElement.type = 'text';
-      cellElement.value = cell;
-      cellElement.addEventListener('input', (event) => {
-        // Update the data in the JSON file
-        updateData(rowIndex, cellIndex, event.target.value);
-      });
-
-      rowElement.appendChild(cellElement);
-    });
-
-    sheetContainer.appendChild(rowElement);
-  });
+// Generate the grid cells
+for (let row = 0; row < numRows; row++) {
+    for (let col = 0; col < numCols; col++) {
+        const cell = document.createElement('div');
+        cell.contentEditable = 'true'; // Make the cell editable
+        cell.style.width = '100px'; // Set the cell width
+        cell.style.height = '25px'; // Set the cell height
+        cell.style.border = '1px solid #CCCCCC'; // Add a border
+        cell.style.padding = '5px'; // Add some padding
+        spreadsheetGrid.appendChild(cell);
+    }
 }
 
-// Update the data in the JSON file
-function updateData(rowIndex, cellIndex, value) {
-  // TO DO: Implement the logic to update the data in the JSON file
-}
+// Update the grid template columns and rows
+spreadsheetGrid.style.gridTemplateColumns = `repeat(${numCols}, 100px)`;
+spreadsheetGrid.style.gridTemplateRows = `repeat(${numRows}, 25px)`;
