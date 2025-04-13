@@ -25,11 +25,15 @@
                 <option value="14">14</option>
                 <option value="16">16</option>
             </select>
+            <button class="toolbar-button" id="chart-button">Chart</button>
         </div>
 
         <!-- Spreadsheet Container -->
         <div class="spreadsheet-container">
             <div class="spreadsheet-grid" id="spreadsheet-grid"></div>
+            <div class="chart-container" id="chart-container" style="display: none;">
+                <canvas id="chart-canvas"></canvas>
+            </div>
         </div>
 
         <!-- Bottom Toolbar -->
@@ -40,6 +44,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
